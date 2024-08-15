@@ -1,0 +1,66 @@
+[package]
+name = "kapacitor-multi-indicator-stream-udf"
+version = "0.1.1"
+authors = ["Niklas Gussek <niklas.gussek@gmail.com>"]
+edition = "2021"
+rust-version = "1.70"
+
+description = "A multi-indicator stream UDF for Kapacitor"
+documentation = "https://docs.rs/kapacitor-multi-indicator-stream-udf"
+homepage = "https://github.com/suitable-name/kapacitor-udf-indicator-stream-rs"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/suitable-name/kapacitor-udf-indicator-stream-rs"
+
+categories = ["database", "asynchronous", "mathematics"]
+keywords = ["kapacitor", "udf", "influxdata", "timeseries", "indicator"]
+
+[dependencies]
+anyhow = "1.0.86"
+async-std = { version = "1.12.0", features = ["attributes"] }
+async-trait = "0.1.81"
+byteorder = "1.5.0"
+clap = { version = "4.5.15", features = ["derive"] }
+env_logger = "0.11.5"
+futures-util = "0.3.30"
+futures = "0.3.30"
+kapacitor-udf = "0.1.0"
+libc = "0.2.155"
+log = "0.4.22"
+pin-utils = "0.1.0"
+prost = "0.13.1"
+serde = { version = "1.0.207", features = ["derive"] }
+serde_json = "1.0.125"
+signal-hook = "0.3.17"
+signal-hook-async-std = "0.2.2"
+structopt = "0.3.26"
+thiserror = "1.0.63"
+toml = "0.8.19"
+tracing = "0.1.40"
+tracing-error = "0.2.0"
+tracing-subscriber = "0.3.18"
+
+[features]
+default = []
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[profile.dev]
+debug = true
+opt-level = 0
+
+[profile.release]
+codegen-units = 1
+debug = false
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+[profile.bench]
+codegen-units = 1
+debug = false
+lto = true
+opt-level = 3
